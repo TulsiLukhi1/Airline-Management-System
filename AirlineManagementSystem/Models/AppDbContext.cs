@@ -8,11 +8,17 @@ namespace AirlineManagementSystem.Models
 {
     public class AppDbContext : DbContext
     {
+
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
 
         }
+
+        //public AppDbContext() : base("AirlineMS_DBConnection")
+        //{
+
+        //}
 
         public DbSet<AdminModel> AdminModels { get; set; }
         public DbSet<AeroPlaneModel> AeroPlaneModels { get; set; }

@@ -5,11 +5,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using AirlineManagementSystem.Models;
 
+
+
 namespace AirlineManagementSystem.Controllers
 {
     public class AdminController : Controller
     {
-        AppDbContext dbContext;
+        readonly AppDbContext _dbContext;
+
+        public AdminController(AppDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public IActionResult Index()
         {
             return View();
@@ -18,20 +25,29 @@ namespace AirlineManagementSystem.Controllers
         [HttpGet]
         public IActionResult AdminLogin()
         {
+            //if (session["admin"] != null)
+            //{
+            //    return RedirectToAction("Dashboard");
+            //}
+            //else
+            //{
+            //    return View();
+            //}
             return View();
         }
 
         [HttpPost]
         public IActionResult AdminLogin(AdminModel admin)
         {
-            var model = dbContext.AdminModels.Where(adObj=>adObj.AdName == admin.AdName && adObj.Password == admin.Password).FirstOrDefault();
+            var model = _dbContext.AdminModels.Where(adObj=>adObj.AdName == admin.AdName && adObj.Password == admin.Password).FirstOrDefault();
             if (model != null)
             {
+                //Session["session"] = admin.AdName;
                 return RedirectToAction("Dashboard");
             }
             else
             {
-                ViewBag.m = "Wront userid or password";
+                ViewBag.m = "Wrong userid or password";
             }
             return View();
         }

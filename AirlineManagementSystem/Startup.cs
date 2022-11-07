@@ -25,8 +25,12 @@ namespace AirlineManagementSystem
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("AirlineMS_DBConnection")));
+            services.AddDbContextPool<AppDbContext>(
+                options => options.UseSqlServer(_configuration.GetConnectionString("AirlineMS_DBConnection")));
+            
             services.AddControllersWithViews();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,16 +48,29 @@ namespace AirlineManagementSystem
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            //app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+
+                //endpoints.MapGet("/hello/{name}", async context =>
+                // {
+                //     var name = context.Request.RouteValues["name"];
+                //     await context.Response.WriteAsync($"Hello {name}!");
+                // });
+                //endpoints.MapDefaultControllerRoute();
+                //endpoints.MapGet("/", async context =>
+                //{
+                //    await context.Response.WriteAsync("Hello World!");
+                //});
+
+                //endpoints.MapControllers();
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Admin}/{action=AdminLogin}/{id?}");
             });
         }
     }
