@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 
 namespace AirlineManagementSystem.Models
 {
@@ -15,15 +11,15 @@ namespace AirlineManagementSystem.Models
 
 
         [Required(ErrorMessage = "User Name is required")]
-        [Display(Name ="User Name")]
-        [MinLength(3,ErrorMessage ="Minimum 3 Character required"),MaxLength(10,ErrorMessage ="Maximum 10 Character Allowed")]
+        [Display(Name = "User Name")]
+        [MinLength(3, ErrorMessage = "Minimum 3 Character required"), MaxLength(10, ErrorMessage = "Maximum 10 Character Allowed")]
 
         public string AdName { get; set; }
 
 
         [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
-        [MinLength(5,ErrorMessage ="Minimum 5 Character required"),MaxLength(10,ErrorMessage ="Maximum 10 Character Allowed")]
+        [MinLength(5, ErrorMessage = "Minimum 5 Character required"), MaxLength(10, ErrorMessage = "Maximum 10 Character Allowed")]
         public string Password { get; set; }
 
     }

@@ -15,8 +15,8 @@ namespace AirlineManagementSystem.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("ProductVersion", "3.1.30")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("AirlineManagementSystem.Models.AdminModel", b =>
@@ -28,13 +28,13 @@ namespace AirlineManagementSystem.Migrations
 
                     b.Property<string>("AdName")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.HasKey("AdminId");
 
@@ -50,8 +50,8 @@ namespace AirlineManagementSystem.Migrations
 
                     b.Property<string>("APlaneName")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
@@ -66,43 +66,92 @@ namespace AirlineManagementSystem.Migrations
 
             modelBuilder.Entity("AirlineManagementSystem.Models.FlightBookingModel", b =>
                 {
-                    b.Property<int>("FBId")
+                    b.Property<int>("Bid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DDate")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("ResId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("DTime")
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<string>("From")
+                    b.Property<string>("bCusAddress")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("bCusCnic")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("bCusEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("bCusName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("bCusPhoneNum")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("bCusSeats")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("fligthDetailsModelResID")
+                        .HasColumnType("int");
+
+                    b.HasKey("Bid");
+
+                    b.HasIndex("fligthDetailsModelResID");
+
+                    b.ToTable("Tbl_FlightBooking");
+                });
+
+            modelBuilder.Entity("AirlineManagementSystem.Models.FlightDetailsModel", b =>
+                {
+                    b.Property<int>("ResID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("PlaneId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PlaneInfoPlaneId")
+                    b.Property<int>("PlaneSeat")
                         .HasColumnType("int");
 
-                    b.Property<string>("SeatType")
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
-
-                    b.Property<string>("To")
+                    b.Property<string>("ResDepDate")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("FBId");
+                    b.Property<string>("ResFrom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("PlaneInfoPlaneId");
+                    b.Property<string>("ResPlaneType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Tbl_FlightBooking");
+                    b.Property<float>("ResTicketPrice")
+                        .HasColumnType("real");
+
+                    b.Property<string>("ResTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ResTo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("plane_tblsPlaneId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ResID");
+
+                    b.HasIndex("plane_tblsPlaneId");
+
+                    b.ToTable("Tbl_FlightDetails");
                 });
 
             modelBuilder.Entity("AirlineManagementSystem.Models.UserModel", b =>
@@ -115,39 +164,40 @@ namespace AirlineManagementSystem.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<string>("CPassword")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                    b.Property<string>("CNIC")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(13)")
+                        .HasMaxLength(13);
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("NIC")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<string>("PhoneNo")
                         .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
+                        .HasColumnType("nvarchar(11)")
+                        .HasMaxLength(11);
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
                     b.HasKey("UserId");
 
@@ -156,11 +206,16 @@ namespace AirlineManagementSystem.Migrations
 
             modelBuilder.Entity("AirlineManagementSystem.Models.FlightBookingModel", b =>
                 {
-                    b.HasOne("AirlineManagementSystem.Models.AeroPlaneModel", "PlaneInfo")
-                        .WithMany()
-                        .HasForeignKey("PlaneInfoPlaneId");
+                    b.HasOne("AirlineManagementSystem.Models.FlightDetailsModel", "fligthDetailsModel")
+                        .WithMany("tblFlightBookings")
+                        .HasForeignKey("fligthDetailsModelResID");
+                });
 
-                    b.Navigation("PlaneInfo");
+            modelBuilder.Entity("AirlineManagementSystem.Models.FlightDetailsModel", b =>
+                {
+                    b.HasOne("AirlineManagementSystem.Models.AeroPlaneModel", "plane_tbls")
+                        .WithMany()
+                        .HasForeignKey("plane_tblsPlaneId");
                 });
 #pragma warning restore 612, 618
         }

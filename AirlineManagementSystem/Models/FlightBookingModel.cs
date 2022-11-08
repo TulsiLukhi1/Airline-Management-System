@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 
 namespace AirlineManagementSystem.Models
 {
@@ -11,35 +7,38 @@ namespace AirlineManagementSystem.Models
     public class FlightBookingModel
     {
         [Key]
-        public int FBId { get; set;}
+        public int Bid { get; set; }
 
-        [Required(ErrorMessage ="From City Required")]
-        [Display(Name ="From City")]
-        [StringLength(40,ErrorMessage ="Max 40 character allowed")]
-        public string From { get; set; }
-
-
-        [Required(ErrorMessage = "To City Required")]
-        [Display(Name = "To City")]
-        [StringLength(40, ErrorMessage = "Max 40 character allowed")]
-        public string To { get; set; }
-
-        [Display(Name ="Departure Date")]
-        [DataType(DataType.Date)]
-        public DateTime DDate { get; set; }
+        [Required(ErrorMessage = "Name Required")]
+        [Display(Name = "Customer Name")]
+        public string bCusName { get; set; }
 
 
-        [Display(Name = "Departure Time")]
-        [StringLength(15)]
-        [DataType(DataType.Date)]
-        public string DTime { get; set; }
+        [Required(ErrorMessage = "Address Required")]
+        [Display(Name = "Customer Address")]
+        public string bCusAddress { get; set; }
 
-        //one to many relation between aeroplane model and flightbooking model
-        public int PlaneId { get; set; }
-        public virtual AeroPlaneModel PlaneInfo { get; set; }
+        [Required]
+        [Display(Name = "Customer Email")]
+        public string bCusEmail { get; set; }
 
-        [Display(Name ="Seat Type")]
-        [StringLength(25)]
-        public string SeatType { get; set; }
+
+        [Display(Name = "No of Seats")]
+        [Required]
+        public string bCusSeats { get; set; }
+
+
+        [Display(Name = "Phone Number")]
+        [Required]
+        public string bCusPhoneNum { get; set; }
+
+        [Required, Display(Name = "CNIC")]
+        public string bCusCnic { get; set; }
+
+        //one to many relation between TicketReserve model and flightbooking model
+        public int ResId { get; set; }
+        public virtual FlightDetailsModel fligthDetailsModel { get; set; }
+
+
     }
 }

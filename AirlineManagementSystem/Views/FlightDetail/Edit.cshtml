@@ -1,0 +1,87 @@
+﻿@model AirlineManagementSystem.Models.FlightDetailsModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Edit Flight Information</h4>
+                        <p class="card-description">
+                            Edit Flight Details...
+                            <h6 style="color:green">@ViewBag.m</h6>
+                        </p>
+                        <form class="forms-sample" asp-controller="FlightDetail" asp-action="Edit" method="post">
+                            <div class="form-group">
+                                <label asp-for="ResFrom">Flight From</label>
+                                <input asp-for="ResFrom" type="text" class="form-control" id="fromflight" placeholder="Fligth from">
+                                <span asp-validation-for="ResFrom" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="ResTo">Flight To</label>
+                                <input asp-for="ResTo" class="form-control" id="resto" placeholder="Fligth To">
+                                <span asp-validation-for="ResTo" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="ResDepDate">Departure Date</label>
+                                <input asp-for="ResDepDate" class="form-control" id="depdate" placeholder="Departure Date">
+                                <span asp-validation-for="ResDepDate" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="ResTime">Time</label>
+                                <input asp-for="ResTime" class="form-control" id="seat" placeholder="Time">
+                                <span asp-validation-for="ResTime" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="dropdown">
+                                    <label asp-for="PlaneId">Plane Name</label>
+                                    @Html.DropDownListFor(model => model.PlaneId, ViewBag.PlaneList as SelectList, "Please Select", new { @class = "dropdown-item form-control" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label asp-for="PlaneSeat">Plane Seat</label>
+                                <input asp-for="PlaneSeat" class="form-control" id="seat" placeholder="Plane Seat">
+                                <span asp-validation-for="PlaneSeat" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="ResTicketPrice">Ticket Price</label>
+                                <input asp-for="ResTicketPrice" class="form-control" id="ticketprice" placeholder="Price">
+                                <span asp-validation-for="ResTicketPrice" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="ResPlaneType">Plane Type</label>
+                                <input asp-for="ResPlaneType" class="form-control" id="planetype" placeholder="Plane Type">
+                                <span asp-validation-for="ResPlaneType" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <div asp-validation-summary="All"></div>
+                            </div>
+                            <button type="submit" class="btn btn-primary me-2">Update</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

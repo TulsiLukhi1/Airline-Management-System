@@ -1,5 +1,3 @@
-using System;
-
 namespace AirlineManagementSystem.Models
 {
     public class ErrorViewModel

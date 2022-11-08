@@ -1,0 +1,72 @@
+﻿@model IEnumerable<AirlineManagementSystem.Models.FlightBookingModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.bCusName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bCusAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bCusEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bCusSeats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bCusPhoneNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bCusCnic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.bCusName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bCusAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bCusEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bCusSeats)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bCusPhoneNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bCusCnic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Bid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Bid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Bid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

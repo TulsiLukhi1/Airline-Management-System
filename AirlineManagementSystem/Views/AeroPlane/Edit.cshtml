@@ -1,0 +1,55 @@
+﻿@model AirlineManagementSystem.Models.AeroPlaneModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Edit Aeroplane Information</h4>
+                        <p class="card-description">
+                            Edit Flight Details...
+                            <h6 style="color:green">@ViewBag.m</h6>
+                        </p>
+                        <form class="forms-sample" asp-controller="AeroPlane" asp-action="Edit" method="post">
+                            <div class="form-group">
+                                <label asp-for="APlaneName">Aeroplane Name</label>
+                                <input asp-for="APlaneName" type="text" class="form-control" id="exampleInputAplaneName" placeholder="Aeroplane Name">
+                                <span asp-validation-for="APlaneName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="SeatingCapacity">Seating Capacity</label>
+                                <input asp-for="SeatingCapacity" class="form-control" id="exampleInputSeatingCapacity" placeholder="Seating Capacity">
+                                <span asp-validation-for="SeatingCapacity" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Price">Price</label>
+                                <input asp-for="Price" class="form-control" id="exampleInputProce" placeholder="Price">
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <div asp-validation-summary="All"></div>
+                            </div>
+                            <button type="submit" class="btn btn-primary me-2">Save
+                            </button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+

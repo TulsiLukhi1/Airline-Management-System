@@ -1,15 +1,11 @@
 using AirlineManagementSystem.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AirlineManagementSystem
 {
@@ -27,10 +23,17 @@ namespace AirlineManagementSystem
         {
             services.AddDbContextPool<AppDbContext>(
                 options => options.UseSqlServer(_configuration.GetConnectionString("AirlineMS_DBConnection")));
-            
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromDays(1);
+            });
+            services.AddMvc();
+
             services.AddControllersWithViews();
 
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +51,7 @@ namespace AirlineManagementSystem
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            //app.UseSession();
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();

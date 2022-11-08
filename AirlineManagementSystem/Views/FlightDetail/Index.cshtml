@@ -1,0 +1,77 @@
+﻿@model IEnumerable<AirlineManagementSystem.Models.FlightDetailsModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+
+            <div class="col-lg-12 grid-margin stretch-card" >
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Aeroplane Details</h4>
+                        <p class="card-description">
+
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+
+                                        <th>@Html.DisplayNameFor(model => model.ResFrom)</th>
+                                        <th>@Html.DisplayNameFor(model => model.ResTo)</th>
+                                        <th>@Html.DisplayNameFor(model => model.ResDepDate)</th>
+                                        <th>@Html.DisplayNameFor(model => model.ResTime)</th>
+                                        <th>@Html.DisplayNameFor(model => model.PlaneSeat)</th>
+                                        <th>@Html.DisplayNameFor(model => model.ResDepDate)</th>
+                                        <th>@Html.DisplayNameFor(model => model.ResPlaneType)</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ResFrom)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ResTo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ResDepDate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ResTime)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PlaneSeat)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ResTicketPrice)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ResPlaneType)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ResID">Edit</a> |
+                                                <a asp-action="Details" asp-route-id="@item.ResID">Details</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.ResID">Delete</a>
+                                            </td>
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

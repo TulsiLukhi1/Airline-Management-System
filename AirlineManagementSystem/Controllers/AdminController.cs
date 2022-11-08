@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using AirlineManagementSystem.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Threading.Tasks;
-using AirlineManagementSystem.Models;
 
 
 
@@ -12,6 +10,7 @@ namespace AirlineManagementSystem.Controllers
     public class AdminController : Controller
     {
         readonly AppDbContext _dbContext;
+        //public const string SessionKeyName = "_Name";
 
         public AdminController(AppDbContext dbContext)
         {
@@ -25,31 +24,34 @@ namespace AirlineManagementSystem.Controllers
         [HttpGet]
         public IActionResult AdminLogin()
         {
-            //if (session["admin"] != null)
-            //{
-            //    return RedirectToAction("Dashboard");
-            //}
-            //else
-            //{
-            //    return View();
-            //}
-            return View();
+            if (HttpContext.Session.GetString("_AdminSession") != null)
+            {
+                return RedirectToAction("Dashboard");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
         public IActionResult AdminLogin(AdminModel admin)
         {
-            var model = _dbContext.AdminModels.Where(adObj=>adObj.AdName == admin.AdName && adObj.Password == admin.Password).FirstOrDefault();
+
+            var model = _dbContext.AdminModels.Where(adObj => adObj.AdName == admin.AdName && adObj.Password == admin.Password).FirstOrDefault();
             if (model != null)
             {
-                //Session["session"] = admin.AdName;
+                HttpContext.Session.SetString("_AdminSession", model.AdName);
+                string adName = model.AdName;
+                ViewBag.an = adName;
                 return RedirectToAction("Dashboard");
             }
             else
             {
                 ViewBag.m = "Wrong userid or password";
+                return View();
             }
-            return View();
+
         }
 
         public ActionResult Dashboard()

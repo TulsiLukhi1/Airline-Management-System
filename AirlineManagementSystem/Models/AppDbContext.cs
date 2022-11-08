@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore; 
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace AirlineManagementSystem.Models
 {
@@ -24,6 +20,7 @@ namespace AirlineManagementSystem.Models
         public DbSet<AeroPlaneModel> AeroPlaneModels { get; set; }
         public DbSet<UserModel> UserModels { get; set; }
         public DbSet<FlightBookingModel> FlightBookingModels { get; set; }
+        public DbSet<FlightDetailsModel> FlightDetailsModels { get; set; }
 
     }
 }

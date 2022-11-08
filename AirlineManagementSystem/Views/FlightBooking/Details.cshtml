@@ -1,0 +1,61 @@
+﻿@model AirlineManagementSystem.Models.FlightBookingModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>FlightBookingModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.bCusName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.bCusName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.bCusAddress)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.bCusAddress)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.bCusEmail)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.bCusEmail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.bCusSeats)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.bCusSeats)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.bCusPhoneNum)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.bCusPhoneNum)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.bCusCnic)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.bCusCnic)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ResId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ResId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Bid">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
