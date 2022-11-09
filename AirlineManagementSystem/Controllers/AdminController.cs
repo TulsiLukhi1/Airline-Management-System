@@ -24,6 +24,8 @@ namespace AirlineManagementSystem.Controllers
         [HttpGet]
         public IActionResult AdminLogin()
         {
+           HttpContext.Session.Remove("_UserSession");
+
             if (HttpContext.Session.GetString("_AdminSession") != null)
             {
                 return RedirectToAction("Dashboard");

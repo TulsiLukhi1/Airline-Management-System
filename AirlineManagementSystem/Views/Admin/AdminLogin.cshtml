@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "AdminLogin";
-    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLoginLayout.cshtml";
 }
 
 
@@ -40,7 +40,10 @@
                             
                             
                             <button type="submit" class="btn btn-primary me-2">Login</button>
-                            <button class="btn btn-light">User Login</button>
+                            <div class="text-center mt-4 fw-light">
+
+                                Want to Login as User? <a href="@Url.Action("UserLogin","User")" class="text-primary">User Login</a>
+                            </div>
                         </form>
                     </div>
                 </div>

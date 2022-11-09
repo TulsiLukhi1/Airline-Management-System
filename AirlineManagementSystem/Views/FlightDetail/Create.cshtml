@@ -11,40 +11,81 @@
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Add Aeroplane Information</h4>
+                        <h4 class="card-title">Add Flight Information</h4>
                         <p class="card-description">
-                            Add Aeroplane Details...
+                            Add Flight Details...
                             <h6 style="color:green">@ViewBag.m</h6>
                         </p>
                         <form class="forms-sample" asp-controller="FlightDetail" asp-action="Create" method="post">
                             <div class="form-group">
-                                <label asp-for="ResFrom">Flight From</label>
-                                <input asp-for="ResFrom" type="text" class="form-control" id="fromflight" placeholder="Fligth from">
+                                <div class="dropdown">
+                                    <label asp-for="ResFrom">Plane Name</label>
+                                    <select asp-for="ResFrom" class="form-control" style="color:black">
+                                        <option class="dropdown-item" style="color:grey" selected>
+                                            Please Select
+                                        </option>
+                                        <option class="dropdown-item">Delhi</option>
+                                        <option class="dropdown-item">Mumbai</option>
+                                        <option class="dropdown-item">Bangluru</option>
+                                        <option class="dropdown-item">Pune</option>
+                                        <option class="dropdown-item">Ahemdabad</option>
+                                        <option class="dropdown-item">Surat</option>
+                                        <option class="dropdown-item">Kerala</option>
+                                        <option class="dropdown-item">Chennai</option>
+                                        <option class="dropdown-item">Hydrabad</option>
+                                        <option class="dropdown-item">Dubai</option>
+                                        <option class="dropdown-item">Canada</option>
+                                        <option class="dropdown-item">Delhi</option>
+                                        <option class="dropdown-item">US</option>
+                                        <option class="dropdown-item">Kolkata</option>
+                                    </select>
+                                </div>
                                 <span asp-validation-for="ResFrom" class="text-danger"></span>
                             </div>
 
                             <div class="form-group">
-                                <label asp-for="ResTo">Flight To</label>
-                                <input asp-for="ResTo" class="form-control" id="resto" placeholder="Fligth To">
+                                @*<label asp-for="ResTo">Flight To</label>*@
+                                @*<input aksp-for="ResTo" class="form-control" id="resto" placeholder="Fligth To">*@
+                                <div class="dropdown">
+                                    <label asp-for="ResTo">Plane Name</label>
+                                    <select asp-for="ResTo" class="form-control" style="color:black">
+                                        <option class="dropdown-item" style="color:grey" selected
+                                                >Please Select</option>
+                                        <option class="dropdown-item">Delhi</option>
+                                        <option class="dropdown-item">Mumbai</option>
+                                        <option class="dropdown-item">Bangluru</option>
+                                        <option class="dropdown-item">Pune</option>
+                                        <option class="dropdown-item">Ahemdabad</option>
+                                        <option class="dropdown-item">Surat</option>
+                                        <option class="dropdown-item">Kerala</option>
+                                        <option class="dropdown-item">Chennai</option>
+                                        <option class="dropdown-item">Hydrabad</option>
+                                        <option class="dropdown-item">Dubai</option>
+                                        <option class="dropdown-item">Canada</option>
+                                        <option class="dropdown-item">Delhi</option>
+                                        <option class="dropdown-item">US</option>
+                                        <option class="dropdown-item">Kolkata</option>
+                                    </select>
+                                </div>
                                 <span asp-validation-for="ResTo" class="text-danger"></span>
                             </div>
 
                             <div class="form-group">
                                 <label asp-for="ResDepDate">Departure Date</label>
-                                <input asp-for="ResDepDate" class="form-control" id="depdate" placeholder="Departure Date">
+                                <input asp-for="ResDepDate" class="form-control" id="depdate" placeholder="Departure Date" type="date">
                                 <span asp-validation-for="ResDepDate" class="text-danger"></span>
                             </div>
 
                             <div class="form-group">
                                 <label asp-for="ResTime">Time</label>
-                                <input asp-for="ResTime" class="form-control" id="seat" placeholder="Time">
+                                <input asp-for="ResTime" class="form-control" id="seat" placeholder="Time" type="time">
                                 <span asp-validation-for="ResTime" class="text-danger"></span>
                             </div>
 
                             <div class="form-group">
                                 <div class="dropdown">
                                     <label asp-for="PlaneId">Plane Name</label>
-                                    @Html.DropDownListFor(model => model.PlaneId, ViewBag.PlaneList as SelectList, "Please Select", new { @class = "dropdown-item form-control" })
+                                    @Html.DropDownListFor(model => model.PlaneId, ViewBag.PlaneList as SelectList, "Please Select", new { @class = "dropdown-item form-control "})
                                 </div>
                             </div>
 
@@ -63,8 +104,25 @@
                             </div>
 
                             <div class="form-group">
-                                <label asp-for="ResPlaneType">Plane Type</label>
-                                <input asp-for="ResPlaneType" class="form-control" id="planetype" placeholder="Plane Type">
+                                
+                                <div class="dropdown">
+                                    <label asp-for="ResPlaneType">Plane Name</label>
+                                    <select asp-for="ResPlaneType" class="form-control" style="color:black">
+                                        <option class="dropdown-item" style="color:grey" selected>
+                                            Please Select
+                                        </option>
+                                        <option class="dropdown-item">Jumbo Passanger Jet</option>
+                                        <option class="dropdown-item">Mid-Size Passanger Jet</option>
+                                        <option class="dropdown-item">Light Passanger Jet</option>
+                                        <option class="dropdown-item">Passanger Turboprops</option>
+                                        <option class="dropdown-item">Cargo Airplanes</option>
+                                        <option class="dropdown-item">Light Business Jet</option>
+                                        <option class="dropdown-item">Mid-Size Business Jet</option>
+                                        <option class="dropdown-item">Heavy Business Jet</option>
+                                      
+                                        <option class="">Kolkata</option>
+                                    </select>
+                                </div>
                                 <span asp-validation-for="ResPlaneType" class="text-danger"></span>
                             </div>
 

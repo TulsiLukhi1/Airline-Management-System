@@ -82,7 +82,6 @@ namespace AirlineManagementSystem.Controllers
                 return RedirectToAction("AdminLogin", "Admin");
             }
 
-           
         }
 
 
@@ -147,9 +146,6 @@ namespace AirlineManagementSystem.Controllers
             {
                 return RedirectToAction("AdminLogin", "Admin");
             }
-
-           
-
         }
 
         // POST: AeroPlaneController/Delete/5

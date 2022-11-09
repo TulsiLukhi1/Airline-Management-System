@@ -27,7 +27,7 @@ using AirlineManagementSystem.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"65c0e13b6ba67dde15013bbca4e02a3a65718a29", @"/Views/AeroPlane/Details.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"16b1701f6e22b9c020ca82a2b043cb90fa5a8809", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d9d2dc3884bca324bd3bde850423915cddd5aaff", @"/Views/_ViewImports.cshtml")]
     public class Views_AeroPlane_Details : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<AirlineManagementSystem.Models.AeroPlaneModel>
     {
         #pragma warning disable 1998

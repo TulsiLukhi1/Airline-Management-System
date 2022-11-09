@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AirlineManagementSystem.Models;
+using AirlineManagementSystem.Models;
+using Microsoft.AspNetCore.Http;
+
 
 namespace AirlineManagementSystem.Controllers
 {
@@ -21,31 +24,160 @@ namespace AirlineManagementSystem.Controllers
         // GET: FlightBooking
         public async Task<IActionResult> Index()
         {
-            return View(await _context.FlightBookingModels.ToListAsync());
+            if (HttpContext.Session.GetString("_UserSession") != null)
+            {
+                return RedirectToAction("Dashboard");
+            }
+            else
+            {
+                return RedirectToAction("UserLogin","User");
+            }
+           
         }
 
+        public ActionResult Dashboard()
+        {
+            if (HttpContext.Session.GetString("_UserSession") != null)
+            {
+                ViewBag.dcity = _context.FlightDetailsModels.Select(l => l.ResFrom).Distinct().ToList();
+                ViewBag.acity = _context.FlightDetailsModels.Select(l => l.ResTo).Distinct().ToList();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("UserLogin","User");
+                
+            }
+
+            
+        }
+
+        [HttpPost]
+        public ActionResult Search(string cityto,string cityfrom, string date1)
+        {
+            if (HttpContext.Session.GetString("_UserSession") != null)
+            {
+                var details = _context.FlightDetailsModels.Where(l => l.ResTo.Equals(cityto) && l.ResFrom.Equals(cityfrom) && l.ResDepDate.Equals(date1)).FirstOrDefault();
+                ViewBag.ss = details;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("UserLogin","User");
+
+            }
+
+        }
         // GET: FlightBooking/Details/5
+
+        public ActionResult ViewAllFlights()
+        {
+            if (HttpContext.Session.GetString("_UserSession") != null)
+            {
+                return View(_context.FlightDetailsModels.ToList());
+            }
+            else
+            {
+                return RedirectToAction("UserLogin","User");
+
+            }
+
+        }
+
+        
+        public ActionResult BookingFlight(int id)
+        {
+            if (HttpContext.Session.GetString("_UserSession") != null)
+            {
+                var detail = _context.FlightDetailsModels.Where(model => model.ResID == id).FirstOrDefault();
+                ViewBag.planedetails = detail;
+                return View("Booking");
+            }
+            else
+            {
+                return RedirectToAction("UserLogin","User");
+
+            }
+
+
+        }
+
+        //public ActionResult Booking()
+        //{
+        //    return View();
+        //}
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Booking([Bind("Bid,bCusName,bCusAddress,bCusEmail,bCusSeats,bCusPhoneNum,bCusCnic,ResId")] FlightBookingModel flightBookingModel)
+        {
+            if (HttpContext.Session.GetString("_UserSession") != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    _context.FlightBookingModels.Add(flightBookingModel);
+                    _context.SaveChanges();
+                    var detail = _context.FlightDetailsModels.Where(model => model.ResID == flightBookingModel.ResId).FirstOrDefault();
+                    ViewBag.planedetails = detail;
+                    ViewBag.m = "Record Saved";
+                    return View();
+                }
+                return View(flightBookingModel);
+            }
+            else
+            {
+                return RedirectToAction("UserLogin","User");
+
+            }
+
+        }
+
+        public ActionResult BookedFlights()
+        {
+            if (HttpContext.Session.GetString("_UserSession") != null)
+            {
+                return View(_context.FlightBookingModels.ToList());
+            }
+            else
+            {
+                return RedirectToAction("UserLogin","User");
+
+            }
+
+
+        }
+
+
+
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (HttpContext.Session.GetString("_UserSession") != null)
             {
-                return NotFound();
+                var detail = _context.FlightDetailsModels.Where(model => model.ResID == id).FirstOrDefault();
+                return View(detail);
+            }
+            else
+            {
+                return RedirectToAction("UserLogin","User");
+
             }
 
-            var flightBookingModel = await _context.FlightBookingModels
-                .FirstOrDefaultAsync(m => m.Bid == id);
-            if (flightBookingModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(flightBookingModel);
         }
 
         // GET: FlightBooking/Create
         public IActionResult Create()
         {
-            return View();
+            if (HttpContext.Session.GetString("_UserSession") != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("UserLogin","User");
+
+            }
+
         }
 
         // POST: FlightBooking/Create
@@ -55,98 +187,25 @@ namespace AirlineManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Bid,bCusName,bCusAddress,bCusEmail,bCusSeats,bCusPhoneNum,bCusCnic,ResId")] FlightBookingModel flightBookingModel)
         {
-            if (ModelState.IsValid)
+            if (HttpContext.Session.GetString("_UserSession") != null)
             {
-                _context.Add(flightBookingModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(flightBookingModel);
-        }
-
-        // GET: FlightBooking/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var flightBookingModel = await _context.FlightBookingModels.FindAsync(id);
-            if (flightBookingModel == null)
-            {
-                return NotFound();
-            }
-            return View(flightBookingModel);
-        }
-
-        // POST: FlightBooking/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Bid,bCusName,bCusAddress,bCusEmail,bCusSeats,bCusPhoneNum,bCusCnic,ResId")] FlightBookingModel flightBookingModel)
-        {
-            if (id != flightBookingModel.Bid)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+                if (ModelState.IsValid)
                 {
-                    _context.Update(flightBookingModel);
+                    _context.Add(flightBookingModel);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!FlightBookingModelExists(flightBookingModel.Bid))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return View(flightBookingModel);
             }
-            return View(flightBookingModel);
-        }
-
-        // GET: FlightBooking/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
+            else
             {
-                return NotFound();
+                return RedirectToAction("UserLogin","User");
+
             }
 
-            var flightBookingModel = await _context.FlightBookingModels
-                .FirstOrDefaultAsync(m => m.Bid == id);
-            if (flightBookingModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(flightBookingModel);
         }
 
-        // POST: FlightBooking/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var flightBookingModel = await _context.FlightBookingModels.FindAsync(id);
-            _context.FlightBookingModels.Remove(flightBookingModel);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool FlightBookingModelExists(int id)
-        {
-            return _context.FlightBookingModels.Any(e => e.Bid == id);
-        }
+      
+        
     }
 }

@@ -27,7 +27,7 @@ namespace AirlineManagementSystem
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromDays(1);
+                options.IdleTimeout = TimeSpan.FromMinutes(1);
             });
             services.AddMvc();
 

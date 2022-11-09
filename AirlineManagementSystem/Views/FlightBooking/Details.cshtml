@@ -1,61 +1,78 @@
-﻿@model AirlineManagementSystem.Models.FlightBookingModel
+﻿@model AirlineManagementSystem.Models.FlightDetailsModel
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>FlightBookingModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.bCusName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.bCusName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.bCusAddress)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.bCusAddress)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.bCusEmail)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.bCusEmail)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.bCusSeats)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.bCusSeats)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.bCusPhoneNum)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.bCusPhoneNum)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.bCusCnic)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.bCusCnic)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ResId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ResId)
-        </dd>
-    </dl>
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Booked Flight Information</h4>
+                        <p class="card-description">
+
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>@Html.DisplayNameFor(model => model.ResFrom)</th>
+                                        <th>@Html.DisplayNameFor(model => model.ResTo)</th>
+                                        <th>@Html.DisplayNameFor(model => model.ResDepDate)</th>
+                                        <th>@Html.DisplayNameFor(model => model.ResTime)</th>
+                                        <th>@Html.DisplayNameFor(model => model.PlaneSeat)</th>
+                                        <th>@Html.DisplayNameFor(model => model.ResDepDate)</th>
+                                        <th>@Html.DisplayNameFor(model => model.ResPlaneType)</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(model => model.ResFrom)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.ResTo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.ResDepDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.ResTime)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.PlaneSeat)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.ResTicketPrice)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.ResPlaneType)
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                    </tr>
+
+                                </tbody>
+
+
+                            </table>
+                            <div style="margin:20px">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Bid">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
