@@ -102,10 +102,7 @@ namespace AirlineManagementSystem.Controllers
 
         }
 
-        //public ActionResult Booking()
-        //{
-        //    return View();
-        //}
+        
 
 
         [HttpPost]

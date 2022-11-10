@@ -69,10 +69,12 @@
                                 <div style="margin:20px">
 
                                 </div>
-                                <form asp-action="Booking" asp-controller="FlightBooking">
-                                    <input type="hidden" asp-for="ResID"  name="fid"/>
+                                <form asp-action="BookingFlight" asp-controller="FlightBooking">
+                                    <input type="hidden" value="@ViewBag.ss.ResID" name="id" />
+
+                                    @*<input type="hidden" asp-for="ResID" value="" name="fid" />*@
                                     <input type="submit" value="Book Flight" class="btn btn-primary" />
-                                   
+
                                 </form>
 
                             </div>
