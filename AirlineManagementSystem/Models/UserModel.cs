@@ -59,9 +59,9 @@ namespace AirlineManagementSystem.Models
 
 
 
-        [Display(Name = "CNIC No")]
-        [Required(ErrorMessage = "CNIC No is required"), RegularExpression(@"^([0-9]{13})$", ErrorMessage = "Phone No is not valid")]
-        [StringLength(13)]
+        [Display(Name = "Adhar No")]
+        [Required(ErrorMessage = "Adhar No is required"), RegularExpression(@"^([0-9]{12})$", ErrorMessage = "Adhar No is not valid")]
+        [StringLength(12)]
         public string CNIC { get; set; }
 
 
